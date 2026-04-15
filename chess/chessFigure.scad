@@ -74,11 +74,58 @@ function tower() {
     sphere({r: 16})));
   return union (g, h, i)
 }
+function queen() {
+  a = cylinder ({r1: 10, r2: 5, h: 30, fn: 14});
+  b = translate ([0,0,30],
+                scale ([1,1,0.3],
+                      sphere(9)));
+  c = translate([0,0,32],
+    			scale ([1,1,0.3],
+      						sphere (8)));
+  d = translate([0,0,42],
+      				sphere (7));
+  e = translate([0,0,52],
+      				sphere(3));
+  f = translate([0,0,30],
+                cylinder({r1: 5, r2: 10, h: 15, fn: 14}));
+  g = translate([0,0,5],
+    			union (a,b,c,d,e,f));
+  h = cylinder({r: 16, h: 5});
+  i = translate([0,0,5],
+    			scale([1,1,0.3],
+    				sphere({r: 16})));
+  return union (g, h, i)
+}
+function king() {
+  a = cylinder ({r1: 12, r2: 5, h: 40, fn: 14});
+  b = translate ([0,0,40],
+                scale ([1,1,0.3],
+                      sphere(9)));
+  c = translate([0,0,42],
+    			scale ([1,1,0.3],
+      						sphere (8)));
+  d = translate([0,0,52],
+      				sphere (7));
+  e = translate([-1,-1,58],
+                cube({size: [2,2,8]}));
+  f = translate([-4,-1,62],
+                cube({size: [8,2,2]}));
+  g = translate ([0,0,40],
+                 cylinder ({r1: 5, r2: 10, h: 15, fn: 32}));
+  h = translate([0,0,5],
+    			union (a,b,c,d,e,f,g));
+  y = cylinder({r: 16, h: 5});
+  j = translate([0,0,5],
+    			scale([1,1,0.3],
+    				sphere({r: 16})));
+  return union (h, y, j)
+}
 function main (){
   t1 = translate ([100,100,0],
                  tower());
   t2 = translate ([-100,100,0],
                  tower());
+  t = union (t1,t2);
   p1 = translate ([100,65,0],
                  scale([0.8,0.8,0.8],
                  	pawn()));
@@ -97,17 +144,31 @@ function main (){
   p6 = translate ([-40,65,0],
                  scale([0.8,0.8,0.8],
                  	pawn()));
+  p7 = translate ([-10,65,0],
+                 scale([0.8,0.8,0.8],
+                 	pawn()));
+  p8 = translate ([10,65,0],
+                 scale([0.8,0.8,0.8],
+                 	pawn()));
+  p = union (p1,p2,p3,p4,p5,p6,p7,p8);
   k1 = translate ([70,100,0],
   				 scale([0.8,0.8,0.8],
             		knight()));
   k2 = translate ([-70,100,0],
   				 scale([0.8,0.8,0.8],
             		knight()));
+  k = union (k1,k2);
   b1 = translate ([40,100,0],
                   scale([0.8,0.8,0.8],
                		bishop()));
   b2 = translate ([-40,100,0],
                   scale([0.8,0.8,0.8],
                		bishop()));
-  return union (t1,t2,p1,p2,p3,p4,p5,p6,k1,k2,b1,b2);
+  q = translate ([10,100,0],
+                scale ([0.8,0.8,0.8],
+                      queen()));
+  r = translate ([-10,100,0],
+                scale ([0.8,0.8,0.8],
+                      king()));
+  return union (t,p,k,b1,b2,q,r);
 }
