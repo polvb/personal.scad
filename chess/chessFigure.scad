@@ -125,7 +125,7 @@ function main (){
                  tower());
   t2 = translate ([-100,100,0],
                  tower());
-  t = union (t1,t2);
+  T1 = union (t1,t2);
   p1 = translate ([100,65,0],
                  scale([0.8,0.8,0.8],
                  	pawn()));
@@ -144,31 +144,35 @@ function main (){
   p6 = translate ([-40,65,0],
                  scale([0.8,0.8,0.8],
                  	pawn()));
-  p7 = translate ([-10,65,0],
+  p7 = translate ([-13,65,0],
                  scale([0.8,0.8,0.8],
                  	pawn()));
-  p8 = translate ([10,65,0],
+  p8 = translate ([13,65,0],
                  scale([0.8,0.8,0.8],
                  	pawn()));
-  p = union (p1,p2,p3,p4,p5,p6,p7,p8);
+  P1 = union (p1,p2,p3,p4,p5,p6,p7,p8);
   k1 = translate ([70,100,0],
   				 scale([0.8,0.8,0.8],
             		knight()));
   k2 = translate ([-70,100,0],
   				 scale([0.8,0.8,0.8],
             		knight()));
-  k = union (k1,k2);
+  K1 = union (k1,k2);
   b1 = translate ([40,100,0],
                   scale([0.8,0.8,0.8],
                		bishop()));
   b2 = translate ([-40,100,0],
                   scale([0.8,0.8,0.8],
                		bishop()));
-  q = translate ([10,100,0],
+  Q1 = translate ([13,100,0],
                 scale ([0.8,0.8,0.8],
                       queen()));
-  r = translate ([-10,100,0],
+  R1 = translate ([-13,100,0],
                 scale ([0.8,0.8,0.8],
                       king()));
-  return union (t,p,k,b1,b2,q,r);
+  white = union (T1,P1,K1,b1,b2,Q1,R1)
+  black = translate([0,-7,0],
+                    rotate ([0,0,180],
+                            white));
+  return union (white, black);
 }
