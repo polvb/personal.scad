@@ -1,0 +1,9 @@
+function peu() {
+  x = cylinder({r1: 3, r2: 1, h: 7, fn: 4}).rotateX(-90);
+  y = cube({size: [7,7,3]}).translate([-4,0,-3]);
+  return difference(x,y);
+}
+
+function main() {
+  return peu();
+}
